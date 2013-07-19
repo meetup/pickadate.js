@@ -65,7 +65,6 @@ $( '#date_demo__buttons' ).pickadate({
 $( '#date_demo__formats--a' ).pickadate({
     format: 'You selecte!d: dddd, dd mmm, yyyy',
     formatSubmit: 'yyyy/mm/dd',
-    hiddenSuffix: '--submit',
     onSet: function( event ) {
         if ( event.select ) {
             this.$node.
@@ -237,7 +236,6 @@ $( '#time_demo__formats--a' ).pickatime({
     format: 'T!ime selected: h:i a',
     formatLabel: '<b>h</b>:i <!i>a</!i>',
     formatSubmit: 'HH:i',
-    hiddenSuffix: '--submit',
     onSet: function( event ) {
         if ( event.select ) {
             this.$node.

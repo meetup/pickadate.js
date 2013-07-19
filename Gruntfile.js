@@ -135,7 +135,8 @@ module.exports = function( grunt ) {
                     '<%= dirs.dest.themes %>/default.date.css': [ '<%= dirs.src.themes %>/base.date.less', '<%= dirs.src.themes %>/default.date.less' ],
                     '<%= dirs.dest.themes %>/default.time.css': [ '<%= dirs.src.themes %>/base.time.less', '<%= dirs.src.themes %>/default.time.less' ],
                     '<%= dirs.dest.themes %>/classic.date.css': [ '<%= dirs.src.themes %>/base.date.less', '<%= dirs.src.themes %>/classic.date.less' ],
-                    '<%= dirs.dest.themes %>/classic.time.css': [ '<%= dirs.src.themes %>/base.time.less', '<%= dirs.src.themes %>/classic.time.less' ]
+                    '<%= dirs.dest.themes %>/classic.time.css': [ '<%= dirs.src.themes %>/base.time.less', '<%= dirs.src.themes %>/classic.time.less' ],
+					'<%= dirs.dest.themes %>/pickadate.date.css': [ '<%= dirs.src.themes %>/base.less', '<%= dirs.src.themes %>/default.less', '<%= dirs.src.themes %>/base.date.less', '<%= dirs.src.themes %>/default.date.less' ]
                 }
             }
         },
@@ -156,7 +157,11 @@ module.exports = function( grunt ) {
                 cwd: '<%= dirs.src.pickers %>',
                 src: [ '*.js' ],
                 dest: '<%= dirs.dest.pickers %>'
-            }
+            },
+			mu_pickers: {
+                src: [ '<%= dirs.src.pickers %>/picker.js', '<%= dirs.src.pickers %>/picker.date.js' ],
+                dest: '<%= dirs.dest.pickers %>/pickadate.date.js'
+			}
         },
 
 

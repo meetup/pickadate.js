@@ -101,11 +101,6 @@ module( 'Formatting setup', {
     }
 })
 
-test( 'Hidden suffix', function() {
-    var picker = this.picker
-    strictEqual( picker.$node[0].name + '_submit', picker._hidden.name, 'Correct hidden element `name` suffix' )
-})
-
 
 
 
