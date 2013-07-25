@@ -43,6 +43,11 @@
 .picker__box {
   padding: 0 1em;
 }
+.picker__title {
+  display: block;
+  text-align: center;
+  margin-top: .75em;
+}
 /**
  * The header containing the month and year stuff.
  */
