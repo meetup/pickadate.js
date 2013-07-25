@@ -192,9 +192,9 @@
     border: 1px solid #777777;
     border-top-color: #898989;
     border-bottom-width: 0;
-    -webkit-border-radius: 5px 5px 0 0;
-    -moz-border-radius: 5px 5px 0 0;
-    border-radius: 5px 5px 0 0;
+    -webkit-border-radius: 3px 3px 0 0;
+    -moz-border-radius: 3px 3px 0 0;
+    border-radius: 3px 3px 0 0;
     -webkit-box-shadow: 0 12px 36px 16px rgba(0, 0, 0, 0.24);
     -moz-box-shadow: 0 12px 36px 16px rgba(0, 0, 0, 0.24);
     box-shadow: 0 12px 36px 16px rgba(0, 0, 0, 0.24);
@@ -204,9 +204,9 @@
   .picker__box {
     font-size: 1.5em;
     border-bottom-width: 1px;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
   }
 }
 /**
@@ -282,12 +282,14 @@
  * The picker box.
  */
 .picker__box {
-  padding: 0 1em;
+  padding: 0 0;
 }
 .picker__title {
-  display: block;
   text-align: center;
   margin-top: .75em;
+  font-weight: bold;
+  font-size: 0.8em;
+  padding-bottom: 0;
 }
 /**
  * The header containing the month and year stuff.
@@ -347,11 +349,11 @@
   height: 1em;
 }
 .picker__nav--prev {
-  left: -1em;
+  left: 0;
   padding-right: 1.5em;
 }
 .picker__nav--next {
-  right: -1em;
+  right: 0;
   padding-left: 1.5em;
 }
 .picker__nav--prev:before,
@@ -395,11 +397,11 @@
   font-size: inherit;
   width: 100%;
   margin-top: .75em;
-  margin-bottom: .5em;
+  margin-bottom: 0;
 }
 @media (min-height: 33.875em) {
   .picker__table {
-    margin-bottom: .75em;
+    margin-bottom: 0;
   }
 }
 .picker__table td {
@@ -427,9 +429,10 @@
  * The days on the calendar
  */
 .picker__day {
-  padding: .3125em 0;
+  padding: .5em 0;
   font-weight: 200;
   border: 1px solid transparent;
+  text-align: center;
 }
 .picker__day--today {
   color: #0089ec;
@@ -438,8 +441,8 @@
 .picker__day--today:before {
   content: " ";
   position: absolute;
-  top: 2px;
-  right: 2px;
+  top: 0;
+  right: 0;
   width: 0;
   height: 0;
   border-top: 0.5em solid #0059bc;
@@ -500,6 +503,7 @@
   width: 50%;
   display: inline-block;
   vertical-align: bottom;
+  text-shadow: none;
 }
 .picker__button--today:hover,
 .picker__button--clear:hover {

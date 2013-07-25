@@ -41,12 +41,14 @@
  * The picker box.
  */
 .picker__box {
-  padding: 0 1em;
+  padding: 0 0;
 }
 .picker__title {
-  display: block;
   text-align: center;
   margin-top: .75em;
+  font-weight: bold;
+  font-size: 0.8em;
+  padding-bottom: 0;
 }
 /**
  * The header containing the month and year stuff.
@@ -106,11 +108,11 @@
   height: 1em;
 }
 .picker__nav--prev {
-  left: -1em;
+  left: 0;
   padding-right: 1.5em;
 }
 .picker__nav--next {
-  right: -1em;
+  right: 0;
   padding-left: 1.5em;
 }
 .picker__nav--prev:before,
@@ -154,11 +156,11 @@
   font-size: inherit;
   width: 100%;
   margin-top: .75em;
-  margin-bottom: .5em;
+  margin-bottom: 0;
 }
 @media (min-height: 33.875em) {
   .picker__table {
-    margin-bottom: .75em;
+    margin-bottom: 0;
   }
 }
 .picker__table td {
@@ -186,9 +188,10 @@
  * The days on the calendar
  */
 .picker__day {
-  padding: .3125em 0;
+  padding: .5em 0;
   font-weight: 200;
   border: 1px solid transparent;
+  text-align: center;
 }
 .picker__day--today {
   color: #0089ec;
@@ -197,8 +200,8 @@
 .picker__day--today:before {
   content: " ";
   position: absolute;
-  top: 2px;
-  right: 2px;
+  top: 0;
+  right: 0;
   width: 0;
   height: 0;
   border-top: 0.5em solid #0059bc;
@@ -259,6 +262,7 @@
   width: 50%;
   display: inline-block;
   vertical-align: bottom;
+  text-shadow: none;
 }
 .picker__button--today:hover,
 .picker__button--clear:hover {

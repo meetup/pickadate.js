@@ -10,13 +10,15 @@
  * The picker box.
  */
 .picker__box {
-    padding: 0 1em;
+    padding: 0 @box-padding;
 }
 
 .picker__title {
-    display: block;
     text-align: center;
     margin-top: .75em;
+    font-weight: bold;
+    font-size: 0.8em;
+    padding-bottom: 0;
 }
 
 /**
@@ -85,11 +87,11 @@
     height: 1em;
 }
 .picker__nav--prev {
-    left: -1em;
+    left: -@box-padding;
     padding-right: 1.5em;
 }
 .picker__nav--next {
-    right: -1em;
+    right: -@box-padding;
     padding-left: 1.5em;
 }
 .picker__nav--prev:before,
@@ -139,11 +141,11 @@
     font-size: inherit;
     width: 100%;
     margin-top: .75em;
-    margin-bottom: .5em;
+    margin-bottom: 0;
 
     // For `small` screens, increase the spacing a tad.
     @media ( min-height: @breakpoint-small ) {
-        margin-bottom: .75em;
+        margin-bottom: 0;
     }
 }
 
@@ -175,9 +177,10 @@
  * The days on the calendar
  */
 .picker__day {
-    padding: .3125em 0;
+    padding: .5em 0;
     font-weight: 200;
     border: 1px solid transparent;
+    text-align: center
 }
 
 // Today.
@@ -188,8 +191,8 @@
 .picker__day--today:before {
     content: " ";
     position: absolute;
-    top: 2px;
-    right: 2px;
+    top: 0;
+    right: 0;
     width: 0;
     height: 0;
     border-top: .5em solid @blue-tag;
@@ -261,6 +264,7 @@
     width: 50%;
     display: inline-block;
     vertical-align: bottom;
+    text-shadow: none;
 }
 .picker__button--today:hover,
 .picker__button--clear:hover {

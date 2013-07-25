@@ -54,7 +54,7 @@ File                    | Contents                 | Size (min & gzip)
 `default.css`           | __Base default *__       | 0.50kb
 `default.date.css`      | Default date picker      | 0.70kb
 `default.time.css`      | Default time picker      | 0.35kb
-`classic.css`           | __Base classic *__       | 0.33kb
+`classic.css`           | __Base classic *__       | 0.32kb
 `classic.date.css`      | Classic date picker      | 0.70kb
 `classic.time.css`      | Classic time picker      | 0.35kb
 
