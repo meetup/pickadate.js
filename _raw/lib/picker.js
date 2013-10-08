@@ -148,7 +148,7 @@ function PickerConstructor( ELEMENT, NAME, COMPONENT, OPTIONS ) {
                 // using the name of the original input plus suffix. Otherwise set it to null.
                 // If the element has a value, use either the `data-value` or `value`.
 				if ( SETTINGS.formatSubmit ) {
-					P._hidden = $( '<input type=hidden name=' + ELEMENT.name + ( $ELEMENT.data( 'value' ) ? ' value="' + PickerConstructor._.trigger( P.component.formats.toString, P.component, [ SETTINGS.formatSubmit, P.component.item.select ] ) + '"' : '' ) + '>' )[ 0 ];
+					P._hidden = $( '<input type=hidden id="' + ELEMENT.name + '_formatted' + '" name=' + ELEMENT.name + ( $ELEMENT.data( 'value' ) ? ' value="' + PickerConstructor._.trigger( P.component.formats.toString, P.component, [ SETTINGS.formatSubmit, P.component.item.select ] ) + '"' : '' ) + '>' )[ 0 ];
 					ELEMENT.name = ELEMENT.name + '_pickadate';
 				} else {
 					P._hidden = undefined;
