@@ -10,9 +10,9 @@
 
 <title>Pickadate.js</title>
 
-<link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="../../lib/themes/default.css">
-<link rel="stylesheet" href="../../lib/themes/default.time.css">
+<link rel="stylesheet" href="../../demo/styles/css/main.css">
+<link rel="stylesheet" href="../../lib/themes/classic.css">
+<link rel="stylesheet" href="../../lib/themes/classic.time.css">
 
 <!--[if lt IE 9]>
     <script>document.createElement('section')</script>
@@ -30,30 +30,23 @@
 
 <body>
 
-    <section class="holder holder-top holder-clean">
-
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-
-        <fieldset>
-            <input type="text">
-        </fieldset>
+    <section class="section">
 
         <form>
             <fieldset>
-                <h3><label for="input_01">Pick a date. Go ahead...</label></h3>
-                <input id="input_from" class="datepicker" name="date" type="date" value="2:30 AM" data-valuee="01:30" autofocus>
-                <br><br><br><br><br>
-                <input class="button" type="submit" value="open">
+                <h3><label for="input_01">Pick a time. Go ahead...</label></h3>
+                <input
+                    id="input_from"
+                    class="datepicker"
+                    type="time"
+                    name="time"
+                    autofocuss>
+                    <!-- valuee="2:30 AM"
+                    data-value="0:00" -->
             </fieldset>
         </form>
 
-        <fieldset>
-            <input id="input_to" type="text" class="datepickerr">
-        </fieldset>
-
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 
     </section>
 
@@ -66,38 +59,11 @@
     <script type="text/javascript">
 
         var $input = $( '.datepicker' ).pickatime({
-            // format: 'h:i a',
-            formatLabel: '<b>h</b>:i <!i>a</!i>',
-            // formatSubmit: 'HH:i',
-            // interval: 120,
             disable: [
-                // true,
-                0,
-                1,
-                4,
-                [3,30],
-                [8,45]
-            ],
-            // min: 4,
-            // min: [ 7, 30 ],
-            // max: -2,
-            // max: [ 9, 0 ],
-            onOpen: function() {
-                $('body').css('overflow','hidden')
-            },
-            onClose: function() {
-                $('body').css('overflow','')
-            }
+                { from: true, to: 10 }
+            ]
         }),
         picker = $input.pickatime('picker')
-
-        // console.log( picker.set( 'max', false ) )
-
-        // var $button = $( '.button' ).on( 'click', function( event ) {
-        //     event.preventDefault()
-        //     event.stopPropagation()
-        //     $input.pickatime( 'open' )
-        // })
 
     </script>
 

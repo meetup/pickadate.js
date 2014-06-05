@@ -26,8 +26,8 @@ var $DOM = $( '#qunit-fixture' ),
 module( 'Base setup', {
     setup: function() {
         $DOM.append( $INPUT.clone() )
-        var $input = $DOM.find( 'input' ).pickadate()
-        this.picker = $input.pickadate( 'picker' )
+        this.$input = $DOM.find( 'input' ).pickadate()
+        this.picker = this.$input.pickadate( 'picker' )
     },
     teardown: function() {
         this.picker.stop()
@@ -72,19 +72,31 @@ test( 'Picker states', function() {
     ok( picker.get( 'start' ) === true, 'Started with trigger' )
 })
 
-test( 'Properties', function() {
+test( 'Picker properties', function() {
 
     var picker = this.picker
 
-    ok( picker.get( 'type' ) === 'password', 'Original type is saved' )
-    ok( picker.get( 'min' ).pick != null, 'Has “min”' )
-    ok( picker.get( 'max' ).pick != null, 'Has “max”' )
-    ok( isInteger( picker.get( 'select' ).pick ), 'Has “select”' )
+    strictEqual( picker.get( 'type' ), 'password', 'Original type is saved' )
+    notStrictEqual( picker.get( 'min' ).pick, null, 'Has “min”' )
+    notStrictEqual( picker.get( 'max' ).pick, null, 'Has “max”' )
+    strictEqual( picker.get( 'select' ), null, 'Has no “select”' )
     ok( isInteger( picker.get( 'highlight' ).pick ), 'Has “highlight”' )
     ok( isInteger( picker.get( 'view' ).pick ), 'Has “view”' )
     ok( isInteger( picker.get( 'now' ).pick ), 'Has “now”' )
     deepEqual( picker.get( 'disable' ), [], 'Default “disable” collection is empty' )
 })
+
+test( 'Picker alternate API', function() {
+
+    var $input = this.$input
+    var picker = this.picker
+
+    strictEqual( $input.pickadate( 'get', 'start' ), picker.get( 'start' ), 'Methods are passed forward' )
+    strictEqual( $input.pickadate( 'component' ), picker.component, 'Objects are passed forward' )
+})
+
+
+
 
 
 module( 'Formatting setup', {
@@ -99,6 +111,98 @@ module( 'Formatting setup', {
         this.picker.stop()
         $DOM.empty()
     }
+})
+
+test( 'Default hidden prefix & suffix', function() {
+    var picker = this.picker
+    strictEqual( picker.$node[0].name + '_submit', picker._hidden.name, 'Correct hidden element `name`' )
+})
+
+module( 'Formatting setup', {
+    setup: function() {
+        $DOM.append( $INPUT.clone().attr( 'name', 'picker' ) )
+        var $input = $DOM.find( 'input' ).pickadate({
+            formatSubmit: 'yyyy/mm/dd',
+            hiddenPrefix: 'prefixed__',
+            hiddenSuffix: '__suffixed'
+        })
+        this.picker = $input.pickadate( 'picker' )
+    },
+    teardown: function() {
+        this.picker.stop()
+        $DOM.empty()
+    }
+})
+
+test( 'Custom hidden prefix & suffix', function() {
+    var picker = this.picker
+    strictEqual( 'prefixed__' + picker.$node[0].name + '__suffixed', picker._hidden.name, 'Correct hidden element `name`' )
+})
+
+module( 'Formatting setup', {
+    setup: function() {
+        $DOM.append( $INPUT.clone().attr( 'name', 'picker' ) )
+        var $input = $DOM.find( 'input' ).pickadate({
+            formatSubmit: 'yyyy/mm/dd',
+            hiddenPrefix: '',
+            hiddenSuffix: ''
+        })
+        this.picker = $input.pickadate( 'picker' )
+    },
+    teardown: function() {
+        this.picker.stop()
+        $DOM.empty()
+    }
+})
+
+test( 'No hidden prefix & suffix', function() {
+    var picker = this.picker
+    strictEqual( picker.$node[0].name, picker._hidden.name, 'Correct hidden element `name`' )
+})
+
+module( 'Formatting setup', {
+    setup: function() {
+        $DOM.append( $INPUT.clone().attr( 'name', 'picker' ) )
+        var $input = $DOM.find( 'input' ).pickadate({
+            formatSubmit: 'yyyy/mm/dd',
+            hiddenName: true
+        })
+        this.picker = $input.pickadate( 'picker' )
+    },
+    teardown: function() {
+        this.picker.stop()
+        $DOM.empty()
+    }
+})
+
+test( 'Hidden name replaces visible name', function() {
+    var picker = this.picker
+    strictEqual( picker.$node[0].name, '', 'Visible element has no `name`')
+    strictEqual(picker._hidden.name, 'picker', 'Correct hidden element `name`' )
+})
+
+
+
+
+
+module( 'Container setup', {
+    setup: function() {
+        $DOM.append( $INPUT.clone().attr( 'name', 'picker' ), $( '<div id="outlet"/>' ) )
+        var $input = $DOM.find( 'input' ).pickadate({
+            formatSubmit: 'yyyy/mm/dd',
+            container: '#outlet'
+        })
+        this.picker = $input.pickadate( 'picker' )
+    },
+    teardown: function() {
+        this.picker.stop()
+        $DOM.empty()
+    }
+})
+
+test( 'Picker root outlet', function() {
+    var picker = this.picker
+    strictEqual( picker.$root[0].parentNode.id, 'outlet', 'Correct root outlet' )
 })
 
 
@@ -196,7 +300,8 @@ test( 'As individual methods', 6, function() {
         trigger( 'start' ).
         trigger( 'open' ).
         trigger( 'render' ).
-        trigger( 'set' )
+        trigger( 'set' ).
+        trigger( 'close' )
 })
 
 test( 'As multiple methods', 6, function() {
@@ -229,19 +334,62 @@ test( 'As multiple methods', 6, function() {
         trigger( 'start' ).
         trigger( 'open' ).
         trigger( 'render' ).
-        trigger( 'set' )
+        trigger( 'set' ).
+        trigger( 'close' )
 })
 
-test( 'Open/close alternate focus', function() {
+test( 'As muted methods', 1, function() {
+
+    var picker = this.picker
+
+    // Bind the callback.
+    picker.on('set', function() {
+        ok( true, 'An outspoken method' )
+    })
+
+    // Do the selections.
+    picker.set('select', new Date())
+    picker.set('select', new Date(), { muted: true })
+    picker.set({ select: new Date() }, { muted: true })
+})
+
+test( 'Open with alternate focus', function() {
 
     var picker = this.picker,
         klasses = Picker.klasses()
 
+    stop()
     picker.open( false )
-    ok( !picker.get( 'open' ) && picker.$node[0].className === klasses.input + ' ' + klasses.active && picker.$root[0].className === klasses.picker + ' ' + klasses.opened && document.activeElement !== picker.$node[0], 'Opened without focus' )
+    setTimeout( function() {
+        ok( !picker.get( 'open' ) && picker.$node[0].className === klasses.input + ' ' + klasses.active && picker.$root[0].className === klasses.picker + ' ' + klasses.opened && document.activeElement !== picker.$node[0], 'Opened without focus' )
+        start()
+    }, 0 )
+})
 
+test( 'Close with alternate focus', function() {
+
+    var picker = this.picker,
+        klasses = Picker.klasses()
+
+    stop()
     picker.close( true )
-    ok( !picker.get( 'open' ) && picker.$node[0].className === klasses.input && picker.$root[0].className === klasses.picker && document.activeElement === picker.$node[0], 'Closed with focus' )
+    setTimeout( function() {
+        ok( !picker.get( 'open' ) && picker.$node[0].className === klasses.input && picker.$root[0].className === klasses.picker && document.activeElement === picker.$node[0], 'Closed with focus' )
+        start()
+    }, 0 )
+})
+
+test( 'Switch off', function() {
+
+    var truthy = true,
+        picker = this.picker
+
+    picker.on('open', function() {
+        truthy = false
+    })
+    picker.off('open')
+
+    strictEqual( truthy, true, 'Method turned off' )
 })
 
 

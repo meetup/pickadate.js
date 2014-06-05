@@ -1,45 +1,8 @@
 /* ==========================================================================
    $BASE-PICKER
    ========================================================================== */
-/* ==========================================================================
-   $VARIABLES
-   ========================================================================== */
 /**
- * Base colors
- */
-/**
- * Backgrounds
- */
-/**
- * Borders
- */
-/**
- * Buttons
- */
-/**
- * Picker base
- */
-/**
- * Date picker options
- */
-/**
- * Theme configurations
- */
-/* ==========================================================================
-   $MIXINS
-   ========================================================================== */
-/**
- * Common picker item states
- */
-/**
- * Opacity
- */
-/**
- * Vendor prefixes
- */
-/**
- * Note: the root picker element should __NOT__ be styled
- * more than what’s here. Style the `.picker__holder` instead.
+ * Note: the root picker element should *NOT* be styled more than what’s here.
  */
 .picker {
   font-size: 16px;
@@ -48,6 +11,10 @@
   color: #000000;
   position: absolute;
   z-index: 10000;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 /**
  * The picker input element.
@@ -72,43 +39,10 @@
 
 /*!
  * Default mobile-first, responsive styling for pickadate.js
- * Demo: http://amsul.github.io/pickadate.js/themes.htm#default
- */
-/* ==========================================================================
-   $VARIABLES
-   ========================================================================== */
-/**
- * Base colors
+ * Demo: http://amsul.github.io/pickadate.js
  */
 /**
- * Backgrounds
- */
-/**
- * Borders
- */
-/**
- * Buttons
- */
-/**
- * Picker base
- */
-/**
- * Date picker options
- */
-/**
- * Theme configurations
- */
-/* ==========================================================================
-   $MIXINS
-   ========================================================================== */
-/**
- * Common picker item states
- */
-/**
- * Opacity
- */
-/**
- * Vendor prefixes
+ * Note: the root picker element should *NOT* be styled more than what’s here.
  */
 /**
  * Make the holder and frame fullscreen.
@@ -242,42 +176,6 @@
 /* ==========================================================================
    $BASE-DATE-PICKER
    ========================================================================== */
-/* ==========================================================================
-   $VARIABLES
-   ========================================================================== */
-/**
- * Base colors
- */
-/**
- * Backgrounds
- */
-/**
- * Borders
- */
-/**
- * Buttons
- */
-/**
- * Picker base
- */
-/**
- * Date picker options
- */
-/**
- * Theme configurations
- */
-/* ==========================================================================
-   $MIXINS
-   ========================================================================== */
-/**
- * Common picker item states
- */
-/**
- * Opacity
- */
-/**
- * Vendor prefixes
- */
 /**
  * The picker box.
  */
@@ -319,13 +217,17 @@
  */
 .picker__select--month,
 .picker__select--year {
-  font-size: .8em;
   border: 1px solid #b7b7b7;
-  height: 2.5em;
-  padding: .66em .25em;
+  height: 2em;
+  padding: .5em;
   margin-left: .25em;
   margin-right: .25em;
-  margin-top: -0.5em;
+}
+@media (min-width: 24.5em) {
+  .picker__select--month,
+  .picker__select--year {
+    margin-top: -0.5em;
+  }
 }
 .picker__select--month {
   width: 35%;
@@ -343,18 +245,35 @@
 .picker__nav--prev,
 .picker__nav--next {
   position: absolute;
-  top: -0.33em;
-  padding: .5em 1.33em;
+  padding: .5em 1.25em;
   width: 1em;
   height: 1em;
+  box-sizing: content-box;
+  top: -0.25em;
+}
+@media (min-width: 24.5em) {
+  .picker__nav--prev,
+  .picker__nav--next {
+    top: -0.33em;
+  }
 }
 .picker__nav--prev {
   left: 0;
   padding-right: 1.5em;
 }
+@media (min-width: 24.5em) {
+  .picker__nav--prev {
+    padding-right: 1.5em;
+  }
+}
 .picker__nav--next {
-  right: 0;
-  padding-left: 1.5em;
+  right: -1em;
+  padding-left: 1.25em;
+}
+@media (min-width: 24.5em) {
+  .picker__nav--next {
+    padding-left: 1.5em;
+  }
 }
 .picker__nav--prev:before,
 .picker__nav--next:before {
@@ -418,7 +337,6 @@
   color: #999999;
   font-weight: 500;
   /* Increase the spacing a tad */
-
 }
 @media (min-height: 33.875em) {
   .picker__weekday {
@@ -435,7 +353,6 @@
   text-align: center;
 }
 .picker__day--today {
-  color: #0089ec;
   position: relative;
 }
 .picker__day--today:before {
@@ -448,22 +365,11 @@
   border-top: 0.5em solid #0059bc;
   border-left: .5em solid transparent;
 }
-.picker__day--selected,
-.picker__day--selected:hover {
-  border-color: #0089ec;
-}
-.picker__day--highlighted {
-  background: #b1dcfb;
-}
 .picker__day--disabled:before {
   border-top-color: #aaaaaa;
 }
 .picker__day--outfocus {
   color: #dddddd;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=66)";
-  filter: alpha(opacity=66);
-  -moz-opacity: 0.66;
-  opacity: 0.66;
 }
 .picker__day--infocus:hover,
 .picker__day--outfocus:hover {
@@ -471,8 +377,18 @@
   color: #000000;
   background: #b1dcfb;
 }
+.picker__day--highlighted {
+  border-color: #0089ec;
+}
 .picker__day--highlighted:hover,
 .picker--focused .picker__day--highlighted {
+  cursor: pointer;
+  color: #000000;
+  background: #b1dcfb;
+}
+.picker__day--selected,
+.picker__day--selected:hover,
+.picker--focused .picker__day--selected {
   background: #0089ec;
   color: #ffffff;
 }
@@ -544,39 +460,3 @@
 /* ==========================================================================
    $DEFAULT-DATE-PICKER
    ========================================================================== */
-/* ==========================================================================
-   $VARIABLES
-   ========================================================================== */
-/**
- * Base colors
- */
-/**
- * Backgrounds
- */
-/**
- * Borders
- */
-/**
- * Buttons
- */
-/**
- * Picker base
- */
-/**
- * Date picker options
- */
-/**
- * Theme configurations
- */
-/* ==========================================================================
-   $MIXINS
-   ========================================================================== */
-/**
- * Common picker item states
- */
-/**
- * Opacity
- */
-/**
- * Vendor prefixes
- */
